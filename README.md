@@ -44,20 +44,25 @@ Create a subfolder for each project iteration.
 ![schematic view](images/schematic-view.png)
 
 #### Photographs
-Youtube video of the prototype lerping between colors
+Youtube Shorts demo of the color animation
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=Rb1v3GvMv4M
-" target="_blank"><img src="http://img.youtube.com/vi/Rb1v3GvMv4M/0.jpg" 
-alt="youtube demo video" width="400" height="300" border="10" /></a>
+<a href="https://youtube.com/shorts/kCc8VIG12Bs?si=Gv4OWngZY9dA2Xdy" 
+   target="_blank">
+   <img src="https://img.youtube.com/vi/kCc8VIG12Bs/maxresdefault.jpg" 
+        alt="YouTube Shorts demo of LED color transitions" 
+        width="400" 
+        height="300" 
+        style="border: 2px solid #ddd; border-radius: 8px;">
+</a>
 
 ### DWW
 
 #### Moodboard
 
-![figma moodboard](images/moodboard.png)
+![figma moodboard](../MITID-assignment/images/moodboard.jpg)
 
 #### User flow 
-[See the user flow in figma↗](https://www.figma.com/design/vJZb0jIlyBSZZtqP1hdXyH/Assignment-designing-with-web-demo?node-id=0-1&t=i6oES4CvV3SZhfUw-1)
+[See the user flow in figma↗](https://www.figma.com/design/Qv7RDaX2VVylZdzTqxudub/Yao-Junyu---Assignment-1?node-id=0-1&t=qNNOzsJftcqaZUeB-1)
 
-![figma user flow](images/fuser-flow.png)
+![figma user flow](../MITID-assignment/images/userflow.jpg)
 

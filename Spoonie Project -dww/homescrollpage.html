@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoonie - Home</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/methio/adafruitIO-class@latest/index.js"></script>
+
+    <script>
+        
+        function daysFrom(targetDateString){
+        const currentDate = new Date();
+
+        const targetDate = new Date(targetDateString);
+
+        const differenceDate = currentDate - targetDate;
+        const numberOfDays = Math.round(differenceDate / (1000 * 60 * 60 * 24));
+        return numberOfDays;
+        }
+
+        const target ="2025-11-02";
+        function rotten(dateString){ return daysFrom(dateString) > 3;}
+
+        if(rotten(target)){
+            //
+        } else {
+            //
+        }
+    </script>
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 主容器 */
+        .home-container {
+            width: 100%;
+            max-width: 414px;
+            height: 100vh;
+            margin: 0 auto;
+            background-color: #FFECA6;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* 顶部导航 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px 10px;
+            background-color: #FFECA6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .menu-btn, .search-btn {
+            background: none;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #000000;
+            transition: background-color 0.2s;
+        }
+
+        .menu-btn:hover, .search-btn:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            padding: 0 24px 60px;
+            min-height: calc(100vh - 60px);
+        }
+
+        /* 部分样式 */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        /* 按钮样式 */
+        .more-btn, .add-btn {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: #000000;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .more-btn:hover, .add-btn:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* 食谱卡片水平滚动容器 */
+        .cards-container {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 10px 0 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 10px;
+        }
+
+        .cards-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 方形食谱卡片样式 */
+        .recipe-card {
+            width: 180px;
+            height: 180px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .recipe-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 12px;
+            color: white;
+        }
+
+        .recipe-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .ingredients {
+            font-size: 12px;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        /* Recommendation 部分右下角的 Spin 按钮 - 调小尺寸 */
+        .section-spin-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: auto;
+            margin-top: 10px;
+            width: 100px;
+            height: 36px;
+        }
+
+        .section-spin-btn:hover {
+            background: #FF8E53;
+            transform: translateY(-2px);
+        }
+
+        .section-spin-btn i {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* 冰箱物品区域 */
+        .fridge-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* 冰箱卡片样式 */
+        .fridge-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .fridge-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .fridge-card.editing {
+            border: 2px solid #007bff;
+            background: #f8f9fa;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .delete-btn:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .item-image:hover::after {
+            content: '📷 Change Photo';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            border-radius: 8px;
+        }
+
+        .item-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-upload-btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .item-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            border: 1px solid transparent;
+            padding: 4px 6px;
+            border-radius: 4px;
+            color: #000000;
+            min-height: 24px;
+            outline: none;
+        }
+
+        .item-name:focus {
+            border-color: #007bff;
+            background: #f8f9fa;
+        }
+
+        .item-quantity, .item-expiry {
+            font-size: 12px;
+            color: #666666;
+            margin-bottom: 2px;
+            border: 1px solid transparent;
+            padding: 4px 6px;
+            border-radius: 4px;
+            min-height: 18px;
+            outline: none;
+        }
+
+        .item-quantity:focus, .item-expiry:focus {
+            border-color: #007bff;
+            background: #f8f9fa;
+        }
+
+        .recipe-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .recipe-tag {
+            background: #FFD93D;
+            color: #000000;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid transparent;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .recipe-tag:focus {
+            border-color: #007bff;
+            background: #FFEaa7;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .modal-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 12px;
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .cancel-btn, .confirm-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cancel-btn {
+            background: #f8f9fa;
+            color: #666;
+        }
+
+        .cancel-btn:hover {
+            background: #e9ecef;
+        }
+
+        .confirm-btn {
+            background: #000000;
+            color: white;
+        }
+
+        .confirm-btn:hover {
+            background: #333333;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 0 16px 40px;
+            }
+            
+            .section-header {
+                margin-bottom: 16px;
+            }
+            
+            .recipe-card {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .fridge-card {
+                padding: 12px;
+            }
+            
+            .item-image {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .section-spin-btn {
+                width: 90px;
+                height: 32px;
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+        }
+
+        /* 编辑状态提示 */
+        [contenteditable="true"]:focus::after {
+            content: " (Editing...)";
+            font-size: 10px;
+            color: #007bff;
+            font-style: italic;
+        }
+
+        /* 淡出动画 */
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.8); }
+        }
+
+        .fade-out {
+            animation: fadeOut 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <!-- 顶部导航 -->
+        <header class="header">
+            <button class="menu-btn" id="menuBtn">
+                <i data-lucide="menu"></i>
+            </button>
+            <button class="search-btn" id="searchBtn">
+                <i data-lucide="search"></i>
+            </button>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- Recommendation 部分 -->
+            <section class="section recommendation-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recommendation</h2>
+                    <button class="more-btn" id="moreRecipes">
+                        more
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="cards-container">
+                    <!-- 8张方形食谱卡片 -->
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="../images/酸奶水果麦片杯.jpg" alt="Yogurt Parfait" class="recipe-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="recipe-name">Yogurt Parfait</h3>
+                            <p class="ingredients">Yogurt, Kiwi, Oats</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="../images/咕咾肉.jpg" alt="Sweet and Sour Pork" class="recipe-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="recipe-name">咕咾肉</h3>
+                            <p class="ingredients">Pork, Pineapple, Tomato Sauce</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="../images/泰式咖喱鱼.jpg" alt="Thai Curry Fish" class="recipe-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="recipe-name">Thai Curry Fish</h3>
+                            <p class="ingredients">Fish, Lemon, Coconut Milk</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="../images/水果色拉.jpg" alt="Fruit Salad" class="recipe-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="recipe-name">Fruit Salad</h3>
+                            <p class="ingredients">Apple, Banana, Orange, Grapes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="../images/炸蔬菜.jpg" alt="Vegetable Stir Fry" class="recipe-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="recipe-name">Vegetable Stir Fry</h3>
+                            <p class="ingredients">Broccoli, Carrot, Bell Pepper</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="../images/chicken curry.jpg" alt="Chicken Curry" class="recipe-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="recipe-name">Chicken Curry</h3>
+                            <p class="ingredients">Chicken, Potato, Onion</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="../images/Pasta Carbonara.jpg" alt="Pasta Carbonara" class="recipe-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="recipe-name">Pasta Carbonara</h3>
+                            <p class="ingredients">Pasta, Egg, Bacon, Cheese</p>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <div class="card-image">
+                            <img src="../images/beef stew.jpg" alt="Beef Stew" class="recipe-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="recipe-name">Beef Stew</h3>
+                            <p class="ingredients">Beef, Potato, Carrot, Onion</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommendation 部分右下角的 Spin 按钮 -->
+                <div style="display: flex; justify-content: flex-end;">
+                    <button class="section-spin-btn" onclick="spinAllRecipes()">
+                        <i data-lucide="refresh-cw"></i>
+                        Spin
+                    </button>
+                </div>
+            </section>
+
+            <!-- What's in my fridge 部分 -->
+            <section class="section fridge-section">
+                <div class="section-header">
+                    <h2 class="section-title">What's in my fridge</h2>
+                    <button class="add-btn" id="addItem">
+                        add
+                        <i data-lucide="plus"></i>
+                    </button>
+                </div>
+                
+                <div class="fridge-items" id="fridgeItems">
+                    <!-- 冰箱物品将通过JavaScript动态添加 -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 添加新项目的模态框 -->
+    <div class="modal" id="addItemModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Item</h3>
+                <button class="close-btn" id="closeModal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="itemImageUpload" accept="image/*" class="modal-input">
+                <input type="text" id="newItemName" placeholder="Item name (e.g., Strawberry)" class="modal-input">
+                <input type="text" id="newItemQuantity" placeholder="Quantity (e.g., 10 pieces)" class="modal-input">
+                <input type="text" id="newItemExpiry" placeholder="Expiration date (e.g., Oct 20, 2025)" class="modal-input">
+                <input type="text" id="newItemTags" placeholder="Recipe tags (comma separated)" class="modal-input">
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn" id="cancelAdd">Cancel</button>
+                <button class="confirm-btn" id="confirmAdd">Add Item</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Spoonie Home Page Loaded');
+            
+            // 初始化Lucide图标
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // 初始化示例数据
+            initializeSampleData();
+            
+            // 获取DOM元素
+            const menuBtn = document.getElementById('menuBtn');
+            const searchBtn = document.getElementById('searchBtn');
+            const moreRecipesBtn = document.getElementById('moreRecipes');
+            const addItemBtn = document.getElementById('addItem');
+            const addItemModal = document.getElementById('addItemModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const cancelAddBtn = document.getElementById('cancelAdd');
+            const confirmAddBtn = document.getElementById('confirmAdd');
+            
+            // 按钮事件
+            menuBtn.addEventListener('click', function() {
+                alert('Menu feature coming soon!');
+            });
+            
+            searchBtn.addEventListener('click', function() {
+                alert('Search feature coming soon!');
+            });
+            
+            moreRecipesBtn.addEventListener('click', function() {
+                alert('More recipes feature coming soon!');
+            });
+            
+            // 模态框控制
+            addItemBtn.addEventListener('click', function() {
+                addItemModal.style.display = 'flex';
+            });
+            
+            function closeModal() {
+                addItemModal.style.display = 'none';
+                document.getElementById('newItemName').value = '';
+                document.getElementById('newItemQuantity').value = '';
+                document.getElementById('newItemExpiry').value = '';
+                document.getElementById('newItemTags').value = '';
+            }
+            
+            closeModalBtn.addEventListener('click', closeModal);
+            cancelAddBtn.addEventListener('click', closeModal);
+            
+            // 点击模态框外部关闭
+            addItemModal.addEventListener('click', function(e) {
+                if (e.target === addItemModal) {
+                    closeModal();
+                }
+            });
+            
+            // 添加新物品
+            confirmAddBtn.addEventListener('click', function() {
+                const name = document.getElementById('newItemName').value.trim();
+                const quantity = document.getElementById('newItemQuantity').value.trim();
+                const expiry = document.getElementById('newItemExpiry').value.trim();
+                const tags = document.getElementById('newItemTags').value.trim();
+                
+                if (!name) {
+                    alert('Please enter item name');
+                    return;
+                }
+                
+                addNewFridgeItem(name, quantity, expiry, tags);
+                closeModal();
+            });
+            
+            // 从本地存储加载数据
+            loadFromLocalStorage();
+        });
+        
+        // 初始化示例数据
+        function initializeSampleData() {
+            const sampleItems = [
+                {
+                    id: 1,
+                    name: "Strawberry",
+                    quantity: "Quantity: 10 pieces",
+                    expiry: "Expiration date: Oct 20, 2025",
+                    expired: rotten("2025-10-28"),
+                    tags: ["pancake", "milkshake"],
+                    image: "../images/strawberry.jpg"
+                },
+                {
+                    id: 2,
+                    name: "Beef",
+                    quantity: "Quantity: 500g",
+                    expiry: "Expiration date: Oct 28, 2025",
+                    tags: ["Curry", "Fried rice"],
+                    image: "../images/beef.jpg"
+                },
+                {
+                    id: 3,
+                    name: "Orange juice",
+                    quantity: "Quantity: 1L",
+                    expiry: "Expiration date: Nov 2, 2025",
+                    tags: ["orange stew beef", "orange jelly"],
+                    image: "../images/orange juice.jpg"
+                },
+                {
+                    id: 4,
+                    name: "Milk",
+                    quantity: "Quantity: 1L",
+                    expiry: "Expiration date: Nov 5, 2025",
+                    tags: ["pudding", "smoothie"],
+                    image: "../images/milk.jpg"
+                }
+            ];
+            
+            sampleItems.forEach(item => {
+                if (!document.querySelector(`.fridge-card[data-id="${item.id}"]`)) {
+                    addFridgeItemToDOM(item);
+                }
+            });
+        }
+        
+        // Spin 所有食谱功能
+        function spinAllRecipes() {
+            alert('Spinning for all recipes!\n(Feature coming soon!)');
+        }
+        
+        // 添加冰箱物品到DOM
+        function addFridgeItemToDOM(item) {
+            const fridgeItems = document.getElementById('fridgeItems');
+            const tagsHtml = item.tags.map(tag => 
+                `<span class="recipe-tag" contenteditable="true">${tag}</span>`
+            ).join('');
+            
+            const itemElement = document.createElement('div');
+            itemElement.className = 'fridge-card';
+            itemElement.setAttribute('data-id', item.id);
+            itemElement.innerHTML = `
+                <button class="delete-btn" onclick="deleteItem(${item.id}, ${item.expired})">
+                    <i data-lucide="trash-2"></i>
+                </button>
+                <div class="item-image">
+                    <img src="${item.image}" alt="${item.name}" class="item-img">
+                    <input type="file" class="image-upload-btn" accept="image/*" onchange="changeItemImage(this, ${item.id})">
+                </div>
+                <div class="item-content">
+                    <h3 class="item-name" contenteditable="true">${item.name}</h3>
+                    <p class="item-quantity" contenteditable="true">${item.quantity}</p>
+                    <p class="item-expiry" contenteditable="true">${item.expiry}</p>
+                    <div class="recipe-tags">
+                        ${tagsHtml}
+                    </div>
+                </div>
+            `;
+            
+            fridgeItems.appendChild(itemElement);
+            setupEditableForElement(itemElement);
+            
+            // 重新初始化图标
+            if (typeof lucide !== 'undefined') {
+                setTimeout(() => lucide.createIcons(), 100);
+            }
+        }
+        
+        // 添加新冰箱物品
+        function addNewFridgeItem(name, quantity, expiry, tags) {
+            const newItem = {
+                id: Date.now(),
+                name: name,
+                quantity: quantity || "Quantity: ",
+                expiry: expiry || "Expiration date: ",
+                tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag),
+                image: "../images/default-food.jpg"
+            };
+            
+            addFridgeItemToDOM(newItem);
+            saveToLocalStorage();
+        }
+        
+        // 删除物品
+        function deleteItem(itemId, expired) {
+            
+            
+            if (confirm('Are you sure you want to delete this item?')) {
+                const item = document.querySelector(`.fridge-card[data-id="${itemId}"]`);
+                const IO = new AdafruitIO("YaoJunyu712", "aio_FDHK57RazzFI7SkwOlBqh3cgVxQe");
+                console.log(IO);
+                if(expired){
+                    IO.postData("color", '#FF0000');
+                    alert("OK")
+                }else{
+                    IO.postData("color", '#00ff00');
+                }
+                if (item) {
+                    item.classList.add('fade-out');
+                    setTimeout(() => {
+                        item.remove();
+                        saveToLocalStorage();
+                    }, 300);
+                }
+            }
+        }
+        
+        // 更改物品图片
+        function changeItemImage(input, itemId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const item = document.querySelector(`.fridge-card[data-id="${itemId}"]`);
+                    const img = item.querySelector('.item-img');
+                    img.src = e.target.result;
+                    saveToLocalStorage();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // 设置可编辑内容功能
+        function setupEditableForElement(parentElement) {
+            const editableElements = parentElement.querySelectorAll('[contenteditable="true"]');
+            editableElements.forEach(element => {
+                element.addEventListener('focus', function() {
+                    this.dataset.originalText = this.textContent;
+                    this.closest('.fridge-card').classList.add('editing');
+                });
+                
+                element.addEventListener('blur', function() {
+                    if (this.textContent.trim() === '') {
+                        this.textContent = this.dataset.originalText || 'Edit me';
+                    }
+                    this.closest('.fridge-card').classList.remove('editing');
+                    saveToLocalStorage();
+                });
+                
+                element.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.blur();
+                    }
+                });
+            });
+        }
+        
+        // 保存到本地存储
+        function saveToLocalStorage() {
+            const fridgeItems = [];
+            document.querySelectorAll('.fridge-card').forEach(card => {
+                const item = {
+                    id: card.getAttribute('data-id'),
+                    name: card.querySelector('.item-name').textContent,
+                    quantity: card.querySelector('.item-quantity').textContent,
+                    expiry: card.querySelector('.item-expiry').textContent,
+                    tags: Array.from(card.querySelectorAll('.recipe-tag')).map(tag => tag.textContent),
+                    image: card.querySelector('.item-img').src
+                };
+                fridgeItems.push(item);
+            });
+            
+            localStorage.setItem('spoonieFridgeItems', JSON.stringify(fridgeItems));
+        }
+        
+        // 从本地存储加载数据
+        function loadFromLocalStorage() {
+            const savedItems = localStorage.getItem('spoonieFridgeItems');
+            if (savedItems) {
+                const items = JSON.parse(savedItems);
+                items.forEach(item => {
+                    if (!document.querySelector(`.fridge-card[data-id="${item.id}"]`)) {
+                        addFridgeItemToDOM(item);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
