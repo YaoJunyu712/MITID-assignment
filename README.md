@@ -59,10 +59,10 @@ Youtube Shorts demo of the color animation
 
 #### Moodboard
 
-![figma moodboard](../MITID-assignment/images/moodboard.jpg)
+![figma moodboard](MITID-assignment/images/moodboard.jpg)
 
 #### User flow 
 [See the user flow in figma↗](https://www.figma.com/design/Qv7RDaX2VVylZdzTqxudub/Yao-Junyu---Assignment-1?node-id=0-1&t=qNNOzsJftcqaZUeB-1)
 
-![figma user flow](../MITID-assignment/images/userflow.jpg)
+![figma user flow](MITID-assignment/images/userflow.jpg)
 
