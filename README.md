@@ -61,9 +61,7 @@ Youtube Shorts demo of the color animation
 
 <<<<<<< HEAD
 ![moodboard](images/moodboard.jpg)
-=======
-![figma moodboard](MITID-assignment/images/moodboard.jpg)
->>>>>>> bf2b31e02da9204cf0360e88785a470cb3e36d5d
+
 
 #### User flow 
 [See the user flow in figma↗](https://www.figma.com/design/Qv7RDaX2VVylZdzTqxudub/Yao-Junyu---Assignment-1?node-id=0-1&t=qNNOzsJftcqaZUeB-1)
@@ -82,7 +80,5 @@ To achieve all that, it’s divided into several parts:
 It looks complex because all these features are written in a single file. Each function has to listen to user actions (clicks, typing, uploads), update the page content, and also save data locally at the same time.
 
 I asked AI to help me write it because I wanted to create these features, but I couldn’t handle all this logic by myself. AI helped me build the structure, and then I learned step by step what each part does — like which section controls the pop-up, which one saves data, and which one connects to the IoT device. This process helped me really understand how a full webpage works.
-=======
-![figma user flow](MITID-assignment/images/userflow.jpg)
->>>>>>> bf2b31e02da9204cf0360e88785a470cb3e36d5d
+
 
